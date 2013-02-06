@@ -1,0 +1,31 @@
+<div class="pull-right">
+    <a href="/site/add" class="btn">Add</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>URL</th>
+            <th>Status</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (data.items.length <= 0) { %>
+            <tr>
+                <td colspan="3" style="text-align: center">No records</td>
+            </tr>
+        <% } else { %>
+            <% for(var i in data.items) { %>
+            <tr>
+                <td><%= data.items[i].url %></td>
+                <td><%= data.items[i].status || false %></td>
+                <td>
+                    <a href="/site/edit/<%=data.items[i]._id %>" class="icon icon-edit">Edit</a>
+                    <a href="/site/remove/<%=data.items[i]._id %>" class="icon icon-trash">Remove</a>
+                </td>
+            </tr>
+            <% } %>
+        <% } %>
+    </tbody>
+</table>

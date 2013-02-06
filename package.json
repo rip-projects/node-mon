@@ -1,0 +1,15 @@
+{
+    "name": "mon",
+    "description": "Server Monitoring",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "3.1.x",
+        "ejs": "0.8.x",
+        "express-ejs-layouts": "0.3.1",
+        "mongodb": "1.2.x",
+        "zombie": "1.4.1",
+        "nodemailer": "0.3.x",
+        "async": "0.2.3"
+    }
+}

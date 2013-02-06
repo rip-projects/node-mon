@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <title>MON</title>
+    <link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
+    <link href="/vendor/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            /* The html and body elements cannot have any padding or margin. */
+        }
+
+        /* Wrapper for page content to push down footer */
+        #wrap {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            /* Negative indent footer by it's height */
+            margin: 0 auto -32px;
+        }
+
+        /* Set the fixed height of the footer here */
+        #push,
+        #footer {
+            height: 30px;
+        }
+        #footer {
+            background-color: #f5f5f5;
+            background-image: -moz-linear-gradient(bottom, white, #f5f5f5);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(white));
+            background-image: -webkit-linear-gradient(bottom, white, #f5f5f5);
+            background-image: -o-linear-gradient(bottom, white, #f5f5f5);
+            background-image: linear-gradient(to bottom, white, #f5f5f5);
+            background-repeat: repeat-x;
+            -webkit-box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #D4D4D4;
+        }
+
+        .credit { margin: 0 auto; display: table; margin-top: 5px; }
+
+        #container { padding-top: 60px; padding-bottom: 30px; }
+
+        a.icon { color: transparent; }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/">MON</a>
+                <div class="nav-collapse">
+                    <ul class="menu nav">
+                        <li>
+                            <a href="/site/listing">Site</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="wrap">
+        <div class="container-fluid" id="container">
+            <%- body %>
+        </div>
+        <div id="push"></div>
+    </div>
+
+    <div id="footer">
+        <p class="muted credit">
+            <span class="big">
+            Copyright &copy; 2013 <a href="http://xinix.co.id" target="blank">Xinix Technology</a>. All rights reserved.
+            </span>
+            <span class="tiny">
+                <a href="http://xinix.co.id" target="blank">Xinix Technology</a>
+            </span>
+        </p>
+    </div>
+
+    <script type="text/javascript" src="/vendor/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/vendor/underscore-min.js"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('fieldset > div').each(function() {
+                if (!$(this).hasClass('row-fluid')) {
+                    $(this).addClass('row-fluid');
+                    var children = $(this).children();
+                    if (children.length >= 2 && children[0].tagName == 'LABEL') {
+                        $(children[0]).addClass('span2');
+                        $(children[1]).addClass('span10');
+                        if (children.length > 2) {
+                            children = children.splice(1);
+                            var $div = $('<div class="span10" />');
+                            $(children[0]).after($div);
+                            for(var i in children) {
+                                $(children[i]).appendTo($div);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
