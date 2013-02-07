@@ -5,6 +5,9 @@ var smtp = nodemailer.createTransport("SMTP", {
     host: "localhost"
 });
 
+Browser.loadCSS = false;
+Browser.maxWait = '10s';
+
 exports = module.exports = function(app) {
     function run() {
         app.models.instances['site'].find(function(err, data) {
@@ -18,9 +21,10 @@ exports = module.exports = function(app) {
                             var mailOptions = {
                                 from: "internal <internal@xinix.co.id>",
                                 to: "reekoheek@gmail.com, avesena@gmail.com",
-                                subject: "[MON] " + item.url + ' DOWN',
-                                text: item.url + ' DOWN',
-                                html: '<b>' + item.url + ' DOWN</b>'
+                                subject: "[MON] " + item.url + ' DOWN (status ' + status + ')',
+                                text: item.url + ' DOWN (status ' + status + ')',
+                                html: '<b>' + item.url + ' DOWN</b> (status ' + status + ')'
+
                             };
                             smtp.sendMail(mailOptions, function(error, response){
                                 if(error) console.log(error);
@@ -34,7 +38,7 @@ exports = module.exports = function(app) {
                     app.models.instances['site'].save(item, cb);
                 });
             }, function(err) {
-                setTimeout(run, 5000);
+                setTimeout(run, 10000);
             });
         })
     }
